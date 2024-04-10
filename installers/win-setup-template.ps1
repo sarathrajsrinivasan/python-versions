@@ -124,10 +124,13 @@ $ExecParams = Get-ExecParams -IsMSI $IsMSI -PythonArchPath $PythonArchPath
 
 Write-Host "PythonArchPath $PythonArchPath  PythonExecName $PythonExecName ExecParams $ExecParams"
 
-cmd.exe /c "cd $PythonArchPath && call $PythonExecName $ExecParams /quiet"
+$installCommand = "cd $PythonArchPath && call $PythonExecName $ExecParams /quiet"
+$installOutput = cmd.exe /c $installCommand 2>&1
 if ($LASTEXITCODE -ne 0) {
-    Throw "Error happened during Python installation"
+    Write-Host "Error happened during Python installation:"
+    Write-Host $installOutput
 }
+
 
 Write-Host "Create `python3` symlink"
 if ($MajorVersion -ne "2") {
