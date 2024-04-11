@@ -122,7 +122,8 @@ class WinPythonBuilder : PythonBuilder {
         $installationTemplateContent | Out-File -FilePath $installationScriptLocation
         Write-Debug "Done; Installation script location: $installationScriptLocation)"
         Write-Host "Done; Installation script location: $installationScriptLocation"
-
+        Write-Host " Installation template location : $installationTemplateLocation"
+        Write-Host " Installation script content: $installationTemplateContent"
     }
 
     [void] ArchiveArtifact() {
