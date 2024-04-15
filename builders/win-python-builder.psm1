@@ -61,6 +61,9 @@ class WinPythonBuilder : PythonBuilder {
                 $ArchitectureExtension = ".amd64"
             }
         }
+        elseif ($this.Architecture -eq "arm64") {
+            $ArchitectureExtension = "-arm64"
+        }
 
         return $ArchitectureExtension
     }
@@ -118,6 +121,9 @@ class WinPythonBuilder : PythonBuilder {
         $variablesToReplace.keys | ForEach-Object { $installationTemplateContent = $installationTemplateContent.Replace($_, $variablesToReplace[$_]) }
         $installationTemplateContent | Out-File -FilePath $installationScriptLocation
         Write-Debug "Done; Installation script location: $installationScriptLocation)"
+        Write-Host "Done; Installation script location: $installationScriptLocation"
+        Write-Host " Installation template location : $installationTemplateLocation"
+        Write-Host " Installation script content: $installationTemplateContent"
     }
 
     [void] ArchiveArtifact() {

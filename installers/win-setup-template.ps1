@@ -122,10 +122,16 @@ Copy-Item -Path ./$PythonExecName -Destination $PythonArchPath | Out-Null
 Write-Host "Install Python $Version in $PythonToolcachePath..."
 $ExecParams = Get-ExecParams -IsMSI $IsMSI -PythonArchPath $PythonArchPath
 
-cmd.exe /c "cd $PythonArchPath && call $PythonExecName $ExecParams /quiet"
+Write-Host "PythonArchPath $PythonArchPath  PythonExecName $PythonExecName ExecParams $ExecParams"
+
+$installCommand = "cd $PythonArchPath && call $PythonExecName $ExecParams /quiet"
+$installOutput = cmd.exe /c $installCommand 2>&1
 if ($LASTEXITCODE -ne 0) {
+    Write-Host "Error happened during Python installation:"
+    Write-Host $installOutput
     Throw "Error happened during Python installation"
 }
+
 
 Write-Host "Create `python3` symlink"
 if ($MajorVersion -ne "2") {

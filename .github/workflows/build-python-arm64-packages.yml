@@ -1,4 +1,4 @@
-name: Build Python package
+name: Build Python ARM 64 package 
 run-name: Generate Python ${{ inputs.VERSION || '3.11.0' }}
 on:
   workflow_dispatch:
@@ -13,9 +13,9 @@ on:
         type: boolean
         default: false
       PLATFORMS:
-        description: 'Platforms for execution in "os" or "os_arch" format (arch is "x64" by default)'
+        description: 'Platforms for execution in "os" or "os_arch" format (arch is "arm64" by default)'
         required: true
-        default: 'ubuntu-20.04,ubuntu-22.04,macos-11_x64,macos-11_arm64,windows-2019_x64,windows-2019_x86,windows-2019_arm64'
+        default: 'windows-2019_arm64'
   pull_request:
     paths-ignore:
     - 'versions-manifest.json'
@@ -23,6 +23,7 @@ on:
     - '**.md'
     branches:
     - 'main'
+    - 'testarm64winpkg'
 
 env:
   VERSION: ${{ inputs.VERSION || '3.11.0' }}
@@ -32,14 +33,14 @@ defaults:
 
 jobs:
   generate_matrix:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
     steps:
       - name: Generate execution matrix
         id: generate-matrix
         run: |
-          [String[]]$configurations = "${{ inputs.platforms || 'ubuntu-20.04,ubuntu-22.04,macos-11,macos-11_arm64,windows-2019_x64,windows-2019_x86,windows-2019_arm64' }}".Split(",").Trim()
+          [String[]]$configurations = "${{ inputs.platforms || 'windows-2019_arm64' }}".Split(",").Trim()
           $matrix = @()
 
           foreach ($configuration in $configurations) {
@@ -71,7 +72,7 @@ jobs:
     steps:
 
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
 
@@ -98,7 +99,7 @@ jobs:
     steps:
 
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
 
@@ -168,7 +169,7 @@ jobs:
       name: Publish release
       if: github.event_name == 'workflow_dispatch' && inputs.PUBLISH_RELEASES
       needs: test_python
-      runs-on: ubuntu-latest
+      runs-on: windows-latest
       steps:
       - uses: actions/download-artifact@v3
 
@@ -230,4 +231,3 @@ jobs:
             workflow_id: 'create-pr.yml',
             ref: 'main'
           });
-
