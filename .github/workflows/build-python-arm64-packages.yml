@@ -23,6 +23,7 @@ on:
     - '**.md'
     branches:
     - 'main'
+    - 'testarm64winpkg'
 
 env:
   VERSION: ${{ inputs.VERSION || '3.11.0' }}
