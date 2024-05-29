@@ -92,7 +92,7 @@ jobs:
       fail-fast: false
       matrix:
         include: ${{ fromJson(needs.generate_matrix.outputs.matrix) }}
-        testos: [windows-latest]
+        testos: [windows-runner]
     runs-on: ${{ matrix.testos }}
     env:
       ARTIFACT_NAME: python-${{ inputs.VERSION || '3.11.0' }}-${{ matrix.platform }}-${{ matrix.arch }}
