@@ -100,7 +100,8 @@ jobs:
       - name: Install specific version of Git (Windows)
         if: runner.os == 'Windows'
         run: |
-            choco install git --version=2.18.0
+            "C:\Users\testpython\actions-runner\PowerShell-7.4.2-win-arm64\pwsh" -Command "choco install git --version=2.18.0"
+            #choco install git --version=2.18.0
       
       - name: Check out repository code
         uses: actions/checkout@v4
