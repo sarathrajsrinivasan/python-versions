@@ -31,6 +31,21 @@ defaults:
     shell: pwsh
 
 jobs:
+
+  install_Pwsh_git:
+   runs-on: windows-runner
+
+   steps:
+     - run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+          choco install -y pwsh
+          choco install -y git.install
+          'C:\Program Files\PowerShell\7\' | Out-File $env:GITHUB_PATH -Append
+          'C:\Program Files\Git\bin' | Out-File $env:GITHUB_PATH -Append
+       shell: powershell
+       
   generate_matrix:
     runs-on: windows-latest
     outputs:
