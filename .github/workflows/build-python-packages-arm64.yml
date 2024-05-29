@@ -100,8 +100,8 @@ jobs:
      
       - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          submodules: true
+        #with:
+          #submodules: true
 
       - name: Fully cleanup the toolcache directory before testing
         run: ./helpers/clean-toolcache.ps1 -ToolName "Python"
