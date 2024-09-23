@@ -32,7 +32,7 @@ defaults:
 
 jobs:
   generate_matrix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
     steps:
@@ -232,7 +232,7 @@ jobs:
       name: Publish release
       if: github.event_name == 'workflow_dispatch' && inputs.PUBLISH_RELEASES
       needs: test_python
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       steps:
       - uses: actions/download-artifact@v4
 
@@ -281,7 +281,7 @@ jobs:
   trigger_pr:
     name: Trigger "Create Pull Request" workflow
     needs: publish_release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - name: Trigger "Create Pull Request" workflow
       uses: actions/github-script@v7
