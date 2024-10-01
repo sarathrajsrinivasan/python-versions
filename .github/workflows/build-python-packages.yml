@@ -215,7 +215,7 @@ jobs:
       - name: Install dependencies
         if: matrix.os == 'macos-13'
         run: |
-          brew install python-tk@3.11
+          brew install python-tk
 
       - name: Run tests
         run: |
