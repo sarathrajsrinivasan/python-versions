@@ -5293,13 +5293,13 @@
   {
     "version": "3.9.13",
     "stable": true,
-    "release_url": "https://github.com/HarithaVattikuti/python-versions/releases/tag/3.9.13-11920381613",
+    "release_url": "https://github.com/HarithaVattikuti/python-versions/releases/tag/3.9.13-11921143639",
     "files": [
       {
         "filename": "python-3.9.13-darwin-arm64.tar.gz",
         "arch": "arm64",
         "platform": "darwin",
-        "download_url": "https://github.com/HarithaVattikuti/python-versions/releases/download/3.9.13-11920381613/python-3.9.13-darwin-x64.tar.gz"
+        "download_url": "https://github.com/HarithaVattikuti/python-versions/releases/download/3.9.13-11921143639/python-3.9.13-darwin-x64.tar.gz"
       },
       {
         "filename": "python-3.9.13-darwin-x64.tar.gz",
@@ -6211,13 +6211,13 @@
   {
     "version": "3.8.18",
     "stable": true,
-    "release_url": "https://github.com/actions/python-versions/releases/tag/3.8.18-9962543870",
+    "release_url": "https://github.com/HarithaVattikuti/python-versions/releases/tag/3.8.18-11921136498",
     "files": [
       {
         "filename": "python-3.8.18-darwin-x64.tar.gz",
         "arch": "x64",
         "platform": "darwin",
-        "download_url": "https://github.com/actions/python-versions/releases/download/3.8.18-9962543870/python-3.8.18-darwin-x64.tar.gz"
+        "download_url": "https://github.com/HarithaVattikuti/python-versions/releases/download/3.8.18-11921136498/python-3.8.18-darwin-x64.tar.gz"
       },
       {
         "filename": "python-3.8.18-linux-20.04-x64.tar.gz",
