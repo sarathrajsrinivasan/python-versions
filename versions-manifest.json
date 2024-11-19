@@ -5005,13 +5005,13 @@
   {
     "version": "3.9.19",
     "stable": true,
-    "release_url": "https://github.com/actions/python-versions/releases/tag/3.9.19-9962534424",
+    "release_url": "https://github.com/HarithaVattikuti/python-versions/releases/tag/3.9.19-11918161965",
     "files": [
       {
         "filename": "python-3.9.19-darwin-x64.tar.gz",
         "arch": "x64",
         "platform": "darwin",
-        "download_url": "https://github.com/actions/python-versions/releases/download/3.9.19-9962534424/python-3.9.19-darwin-x64.tar.gz"
+        "download_url": "https://github.com/HarithaVattikuti/python-versions/releases/download/3.9.19-11918161965/python-3.9.19-darwin-x64.tar.gz"
       },
       {
         "filename": "python-3.9.19-linux-20.04-x64.tar.gz",
