@@ -5305,7 +5305,7 @@
         "filename": "python-3.9.13-darwin-x64.tar.gz",
         "arch": "x64",
         "platform": "darwin",
-        "download_url": "https://github.com/actions/python-versions/releases/download/3.9.13-11183687820/python-3.9.13-darwin-x64.tar.gz"
+        "download_url": "https://github.com/HarithaVattikuti/python-versions/releases/download/3.9.13-11921143639/python-3.9.13-darwin-x64.tar.gz"
       },
       {
         "filename": "python-3.9.13-linux-20.04-x64.tar.gz",
