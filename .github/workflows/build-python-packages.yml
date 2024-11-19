@@ -92,6 +92,9 @@ jobs:
         run: |
             echo 'puts [info patchlevel];exit 0' | tclsh
             echo 'puts $tcl_version;exit 0' | tclsh
+      
+      - name: Check Tkinter version
+        run: python3 -c "import tkinter; print(tkinter.TkVersion)"
             
       - name: Setup Environment on Windows ARM64 Runner
         if: matrix.os == 'setup-actions-windows-arm64-4-core'
@@ -157,6 +160,9 @@ jobs:
             echo 'puts [info patchlevel];exit 0' | tclsh
             echo 'puts $tcl_version;exit 0' | tclsh
       
+      - name: Check Tkinter version
+        run: python3 -c "import tkinter; print(tkinter.TkVersion)"
+
       - name: Setup Environment on Windows ARM64 Runner
         if: matrix.os == 'setup-actions-windows-arm64-4-core'
         shell: powershell
