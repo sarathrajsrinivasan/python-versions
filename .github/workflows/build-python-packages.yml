@@ -153,11 +153,14 @@ jobs:
              # Install 7-Zip
             choco install 7zip -y
             echo "C:\ProgramData\chocolatey\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
-            
+           
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           submodules: true
+     
+      - name: import tkinter
+        run: python -c "import tkinter"
 
       - name: Fully cleanup the toolcache directory before testing
         run: ./helpers/clean-toolcache.ps1 -ToolName "Python"
@@ -212,11 +215,11 @@ jobs:
           $pythonLocation = which python
           if ('${{ matrix.platform }}' -eq 'darwin') { otool -L $pythonLocation } else { ldd $pythonLocation }
 
-      - name: Install dependencies
-        if: matrix.os == 'macos-13'
-        run: |
-          brew install python-tk
-
+      #- name: Install dependencies
+      #  if: matrix.os == 'macos-13'
+      #  run: |
+      #    brew install python-tk
+                
       - name: Run tests
         run: |
             Install-Module Pester -Force -Scope CurrentUser -SkipPublisherCheck
