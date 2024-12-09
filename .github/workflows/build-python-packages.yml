@@ -131,10 +131,6 @@ jobs:
       ARTIFACT_NAME: python-${{ inputs.VERSION || '3.12.3' }}-${{ matrix.platform }}-${{ matrix.arch }}
     steps:
 
-      - name: Adding Symlink
-        if: runner.os == 'macOS'
-        run: ln -sf /usr/local/opt/tcl-tk@8 /usr/local/opt/tcl-tk
-        
       - name: Setup Environment on Windows ARM64 Runner
         if: matrix.os == 'setup-actions-windows-arm64-4-core'
         shell: powershell
@@ -205,6 +201,10 @@ jobs:
           python-version: ${{ env.VERSION }}
           architecture: ${{ matrix.arch }}
 
+      - name: Adding Symlink
+        if: runner.os == 'macOS'
+        run: ln -sf /usr/local/opt/tcl-tk@8 /usr/local/opt/tcl-tk
+        
       - name: Verbose sysconfig dump
         if: runner.os == 'Linux' || runner.os == 'macOS'
         run: python ./sources/python-config-output.py
@@ -215,6 +215,7 @@ jobs:
         run: |
           $pythonLocation = which python
           if ('${{ matrix.platform }}' -eq 'darwin') { otool -L $pythonLocation } else { ldd $pythonLocation }
+          
       - name: Run tests
         run: |
             Install-Module Pester -Force -Scope CurrentUser -SkipPublisherCheck
