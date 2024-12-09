@@ -80,22 +80,6 @@ jobs:
     env:
       ARTIFACT_NAME: python-${{ inputs.VERSION || '3.12.3' }}-${{ matrix.platform }}-${{ matrix.arch }}
     steps:
-      - name: Print Tcl/Tk version before update
-        run: |
-            echo 'puts [info patchlevel];exit 0' | tclsh
-            echo 'puts $tcl_version;exit 0' | tclsh
-      - name: Install Tcl/Tk 9.0.0
-        run: |
-          brew update
-          brew install tcl-tk
-      - name: Print Tcl/Tk version
-        run: |
-            echo 'puts [info patchlevel];exit 0' | tclsh
-            echo 'puts $tcl_version;exit 0' | tclsh
-      
-      - name: Check Tkinter version
-        run: python3 -c "import tkinter; print(tkinter.TkVersion)"
-            
       - name: Setup Environment on Windows ARM64 Runner
         if: matrix.os == 'setup-actions-windows-arm64-4-core'
         shell: powershell
@@ -119,7 +103,6 @@ jobs:
             choco install 7zip -y
             echo "C:\ProgramData\chocolatey\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
             
-
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
@@ -147,22 +130,11 @@ jobs:
     env:
       ARTIFACT_NAME: python-${{ inputs.VERSION || '3.12.3' }}-${{ matrix.platform }}-${{ matrix.arch }}
     steps:
-      - name: Print Tcl/Tk version before update
-        run: |
-            echo 'puts [info patchlevel];exit 0' | tclsh
-            echo 'puts $tcl_version;exit 0' | tclsh
-      - name: Install Tcl/Tk 9.0.0
-        run: |
-          brew update
-          brew install tcl-tk
-      - name: Print Tcl/Tk version
-        run: |
-            echo 'puts [info patchlevel];exit 0' | tclsh
-            echo 'puts $tcl_version;exit 0' | tclsh
-      
-      - name: Check Tkinter version
-        run: python3 -c "import tkinter; print(tkinter.TkVersion)"
 
+      - name: Adding Symlink
+        if: runner.os == 'macOS'
+        run: ln -sf /usr/local/opt/tcl-tk@8 /usr/local/opt/tcl-tk
+        
       - name: Setup Environment on Windows ARM64 Runner
         if: matrix.os == 'setup-actions-windows-arm64-4-core'
         shell: powershell
@@ -243,17 +215,6 @@ jobs:
         run: |
           $pythonLocation = which python
           if ('${{ matrix.platform }}' -eq 'darwin') { otool -L $pythonLocation } else { ldd $pythonLocation }
-      
-      - name: Print Tcl/Tk version
-        run: |
-            echo 'puts [info patchlevel];exit 0' | tclsh
-            echo 'puts $tcl_version;exit 0' | tclsh
-            
-     # - name: Install dependencies
-     #   if: matrix.os == 'macos-13'
-    #    run: |
-     #     brew install python-tk
-
       - name: Run tests
         run: |
             Install-Module Pester -Force -Scope CurrentUser -SkipPublisherCheck
@@ -288,7 +249,6 @@ jobs:
           release_name: ${{ env.VERSION }}
           body: |
             Python ${{ env.VERSION }}
-
       - name: Generate hash for packages
         run: |
           $childItems = Get-Childitem -Path '.'
