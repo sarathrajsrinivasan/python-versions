@@ -209,7 +209,12 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           python -c "import tkinter; print('Tkinter imported successfully. Version: {tkinter.TkVersion}')"
-        
+       
+      - name: Install tkinter
+        if: runner.os == 'macOS'
+        run: |
+          brew install python-tk
+          
       - name: Verbose sysconfig dump
         if: runner.os == 'Linux' || runner.os == 'macOS'
         run: python ./sources/python-config-output.py
