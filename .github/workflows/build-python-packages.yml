@@ -204,7 +204,11 @@ jobs:
       - name: Adding Symlink
         if: runner.os == 'macOS'
         run: ln -sf /usr/local/opt/tcl-tk@8 /usr/local/opt/tcl-tk
-        
+
+      - name: import tkinter
+        if: runner.os == 'macOS'
+        run: python -c "import tkinter; print(f'Tkinter imported successfully. Version: {tkinter.TkVersion}')"
+
       - name: Verbose sysconfig dump
         if: runner.os == 'Linux' || runner.os == 'macOS'
         run: python ./sources/python-config-output.py
