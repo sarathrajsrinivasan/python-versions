@@ -71,10 +71,10 @@ Describe "Tests" {
 
     if (IsNixPlatform $Platform) {
 
-        # It "Check for failed modules in build_output" {
-        #    $buildOutputLocation = Join-Path $env:RUNNER_TEMP "build_output.txt"
-        #    Analyze-MissingModules $buildOutputLocation | Should -Be 0
-        # }
+        It "Check for failed modules in build_output" {
+	    $buildOutputLocation = Join-Path $env:RUNNER_TEMP "build_output.txt"
+            Analyze-MissingModules $buildOutputLocation | Should -Be 0
+        }
 
         It "Check if all required python modules are installed"  {
             "python ./sources/python-modules.py" | Should -ReturnZeroExitCode
