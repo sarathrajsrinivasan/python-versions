@@ -109,8 +109,8 @@ jobs:
         with:
           submodules: true
 
-      - name: import tkinter
-        run: python -c "import tkinter"
+      - name: Adding Symlink
+        run: ln -sf /usr/local/opt/tcl-tk@8 /usr/local/opt/tcl-tk
 
       - name: Build Python ${{ env.VERSION }}
         run: |
