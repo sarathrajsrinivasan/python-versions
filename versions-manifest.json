@@ -5226,6 +5226,19 @@
     ]
   },
   {
+    "version": "3.9.21",
+    "stable": true,
+    "release_url": "https://github.com/HarithaVattikuti/python-versions/releases/tag/3.9.21-12284120242",
+    "files": [
+      {
+        "filename": "python-3.9.21-darwin-x64.tar.gz",
+        "arch": "x64",
+        "platform": "darwin",
+        "download_url": "https://github.com/HarithaVattikuti/python-versions/releases/download/3.9.21-12284120242/python-3.9.21-darwin-x64.tar.gz"
+      }
+    ]
+  },
+  {
     "version": "3.9.20",
     "stable": true,
     "release_url": "https://github.com/actions/python-versions/releases/tag/3.9.20-10765735733",
